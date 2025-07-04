@@ -11,7 +11,7 @@ fetch('pages.json')
         const pageNum = match[1];
         return pages.findIndex(p => p.name === pageNum);
       }
-      if (path === "/" || path.endsWith("iIndex.html")) return 0;
+      if (path === "/" || path.endsWith("index.html")) return 0;
       return 0;
     }
 
