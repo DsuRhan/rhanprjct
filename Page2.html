@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Project Collection</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="Image/Derp-face.png" type="image/png">
+    <!-- note for myself:"copy this at every page" -->
+    <style>
+        h1 {
+            color: rgb(5, 117, 117);
+            border: 4px solid rgb(5, 117, 117);
+            padding: 10px;
+            width: fit-content;
+            border-radius: 5px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            border-inline: none;
+        }
+
+        h2 {
+            color: rgb(5, 117, 117);
+        }
+
+        p {
+            font-size: 20px;
+        }
+
+        #PrizeBtn {
+            display: inline-block;
+            padding: 8px 18px;
+            font-size: 1em;
+            background: #0074D9;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        #PrizeBtn:hover {
+            background: #005bb5;
+        }
+    </style>
+
+</head>
+
+<body>
+    <H1>Page2</H1>
+    <H2>Math quiz</H2>
+    <p>In this page, im gonna test the randomnum and user input element in form of a quiz</p>
+    <p>feel free to try it</p>
+    <p>Also, i got a prize for you if you answer the question 3 times correctly</p>
+    <div class="quiz-container">
+        <div id="problem"></div>
+        <form id="quizForm" onsubmit="checkAnswer(); return false;">
+            <input type="text" id="answer" autocomplete="off" placeholder="Your answer">
+            <button type="submit">Submit</button>
+        </form>
+        <div id="feedback"></div>
+    </div>
+    <script>
+        let currentProblem; // Store the current problem
+        let correctCount = 0; // Count of correct answers 
+        const unlockThreshold = 3; // Number of correct answers to unlock the button
+        function generateMathProblem() {
+            const operators = ['+', '-', '*', '/'];
+            let num1, num2, operator, result;
+
+            while (true) {
+                operator = operators[Math.floor(Math.random() * operators.length)];
+
+                if (operator === '/') {
+                    num2 = Math.floor(Math.random() * 20) + 2; // num2 between 2 and 21
+                    let multiplier = Math.floor(Math.random() * 50) + 1; // 1 to 50
+                    num1 = num2 * multiplier;
+                    result = num1 / num2;
+                } else if (operator === '*') {
+                    num1 = Math.floor(Math.random() * 32) + 1; // 1 to 32
+                    num2 = Math.floor(Math.random() * 32) + 1; // 1 to 32
+                    result = num1 * num2;
+                } else if (operator === '+') {
+                    num1 = Math.floor(Math.random() * 1000) + 1;
+                    num2 = Math.floor(Math.random() * 1000) + 1;
+                    result = num1 + num2;
+                } else if (operator === '-') {
+                    num1 = Math.floor(Math.random() * 1000) + 1;
+                    num2 = Math.floor(Math.random() * num1) + 1; // ensure result is positive
+                    result = num1 - num2;
+                }
+
+                if (result <= 1000) {
+                    break;
+                }
+            }
+
+            return { num1, num2, operator };
+        }
+        function calculateAnswer(num1, num2, operator) {
+            switch (operator) {
+                case '+': return num1 + num2;
+                case '-': return num1 - num2;
+                case '*': return num1 * num2;
+                case '/': return num1 / num2;
+                default: return 0;
+            }
+        }
+
+        function displayProblem() {
+            currentProblem = generateMathProblem(); // Save the problem
+
+            const {
+                num1,
+                num2,
+                operator
+            }
+                = currentProblem;
+            const problemString = `${num1} ${operator} ${num2} = ?`;
+            document.getElementById('problem').textContent = problemString;
+        }
+
+        function checkAnswer() {
+            const userAnswer = parseFloat(document.getElementById('answer').value);
+
+            const { num1, num2, operator } = currentProblem; // Use the stored problem
+            const correctAnswer = calculateAnswer(num1, num2, operator);
+            const feedbackDiv = document.getElementById('feedback');
+
+            if (userAnswer === correctAnswer) {
+                feedbackDiv.textContent = "Correct!"; correctCount++;
+                if (correctCount >= unlockThreshold) {
+                    document.getElementById('PrizeBtn').style.display = 'block'; // Show the button
+                }
+            }
+
+            else {
+                feedbackDiv.textContent = `Incorrect. The correct answer is ${correctAnswer}, try again!`;
+            }
+
+            displayProblem(); //show new problem
+            document.getElementById('answer').value = ""; // Clear input field
+        }
+
+        window.onload = function () {
+            displayProblem(); // Display the first question when the page loads
+        }
+        function showPrizeVideo() {
+            var video = document.getElementById('prizeVideo');
+            video.muted = true;
+            video.style.display = 'block';
+            video.play();
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) { // Safari
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { // IE11
+                video.msRequestFullscreen();
+            }
+            document.getElementById('PrizeBtn').style.display = 'none'; // Hide the button after clicking
+        }
+    </script>
+    <div class="fyi">FYI</div>
+    <div class="fyi">* means x</div>
+    <div class="fyi">/ means ÷</div>
+    <video id="prizeVideo" width="480" controls style="display:none; margin:20px auto;">
+        <source src="video/emoji-takes-a-picture-of-you.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <button id="PrizeBtn" style="display:none; margin-top:16px;" onclick="showPrizeVideo()">PRIZE</button>
+    <div class="pagination" id="pagination"></div>
+    <script src="allpage.js"></script>
+    <br>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+.pagination {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin: 10px;
+}
+
+.pagination a {
+    border-radius: 5px;
+    color: #000000;
+    margin: 10px;
+    padding: 4px 10px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.pagination a.active {
+    background-color: #54d792;
+    font-weight: bold;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #939da9;
+    font-weight: 5px;
+}
+
+.fyi {
+    margin: 8px auto;
+    border: 2px solid #0074D9;
+    border-radius: 8px;
+    padding: 6px 16px;
+    color: #0074D9;
+    background: #f0f8ff;
+    width: fit-content;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.quiz-container {
+    background: #f8fafd;
+    border: 2px solid #0074D9;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+    padding: 24px 32px;
+    max-width: 340px;
+    margin: 32px auto 24px auto;
+    text-align: center;
+}
+
+#problem {
+    font-size: 1.5em;
+    margin-bottom: 18px;
+    color: #005b7f;
+    font-weight: bold;
+}
+
+#answer {
+    padding: 8px 12px;
+    font-size: 1em;
+    border: 1.5px solid #0074D9;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    width: 120px;
+    text-align: center;
+    outline: none;
+    transition: border 0.2s;
+}
+
+#answer:focus {
+    border: 1.5px solid #005b7f;
+}
+
+button {
+    padding: 8px 18px;
+    font-size: 1em;
+    background: #0074D9;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 8px;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #005b7f;
+}
+
+#feedback {
+    margin-top: 16px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
