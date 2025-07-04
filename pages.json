@@ -1,5 +1,5 @@
 [
-  { "name": "1", "file": "Index.html" },
-  { "name": "2", "file": "Page2.html" },
-  { "name": "3", "file": "Page3.html" }
+  { "name": "1", "file": "index.html" },
+  { "name": "2", "file": "page2.html" },
+  { "name": "3", "file": "page3.html" }
 ]
