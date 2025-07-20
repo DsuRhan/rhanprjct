@@ -9,10 +9,132 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="Image/Derp-face.png" type="image/png">
     <!-- note for myself:"copy this at every page" -->
+    <style>
+        #styledBtn {
+            background: linear-gradient(to bottom, #06a20b, #004c8b);
+            /* Gradient background automatically set from up to down, adding to <up,down,left,right> change the gradient direction*/
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            font-size: 2em;
+            cursor: pointer;
+            /* Pointer cursor on hover, applied automatically even when you did not type the code  */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: background 0.5s, color 0.2s;
+        }
+
+        #styledBtn:hover {
+            background: linear-gradient(90deg, blue 0%, rgb(18, 255, 18) 100%);
+            color: white;
+        }
+
+        #jsBtn {
+            background-color: yellowgreen;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition: background-color 0.3s linear, color 0.3s ease;
+        }
+
+        #jsBtn:hover {
+            background-color: rgb(83, 100, 0);
+            color: rgb(222, 246, 45);
+        }
+
+        #minigameBtn {
+            position: relative;
+            display: inline-block;
+            padding: 5px 10px;
+            font-size: 10px;
+            background: radial-gradient(circle, #ffcc00, #ff9900);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.5s;
+        }
+
+        #minigameBtn:hover {
+            background: radial-gradient(circle, #ff9b06, #ff9148);
+            color: rgb(202, 78, 1);
+        }
+
+        .minigame1 {
+            position: relative;
+            width: 100%;
+            height: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("jsBtn").addEventListener("click", function () {
+                alert("Button clicked!");
+            });
+        });
+        function moveButton() {
+            const button = document.getElementById("minigameBtn");
+            const container = document.querySelector(".minigame1");
+            const maxX = container.clientWidth - button.clientWidth;
+            const maxY = container.clientHeight - button.clientHeight;
+        }
+        let clickCount = 0; //set the initial click count to 0
+        const maxClicks = 5; // Set the maximum number of clicks allowed
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const button = document.getElementById("minigameBtn");
+            const container = document.querySelector(".minigame1");
+            button.addEventListener("click", function () {
+                clickCount++;
+                // Move button to random position
+                const maxX = container.clientWidth - button.clientWidth;
+                const maxY = container.clientHeight - button.clientHeight;
+                const randX = Math.random() * maxX;
+                const randY = Math.random() * maxY;
+                button.style.position = "absolute";
+                button.style.left = randX + "px";
+                button.style.top = randY + "px";
+                // After maxClicks, turn into a link button
+                if (clickCount < maxClicks) {
+                    alert("You clicked the button! You can click it " + (maxClicks - clickCount) + " more times.");
+                }
+                // Change button to link after maxClicks
+                if (clickCount >= maxClicks) {
+                    button.innerHTML = "Go to Prize!";
+                    button.onclick = function () {
+                        window.location.href = "video/cat-laugh-you.mp4"
+                    };
+                }
+            })
+        });
+        ;
+
+    </script>
 </head>
 
 <body>
-    <H1>Nothing to see here yet</H1>
-    <div class="pagination" id="pagination"></div>
+    <h1>Button varieties</h1>
+    <ul>
+        <li>Simple button</li>
+        <button id="simpleBtn">Click me</button>
+        <li>Stylized Simple Button</li>
+        <button id="styledBtn">Click me</button>
+        <li>Button with JavaScript</li>
+        <button id="jsBtn">Click me</button>
+    </ul>
+    <p>Click the buttons to see their effects.</p>
+    <p>And now,time for a minigame. try click this button to see what happens </p>
+    <div class="minigame1">
+        <button id="minigameBtn">Catch me !</button>
+    </div>
+    <div class="pagination" id="pagination">
+    </div>
     <script src="allpage.js"></script>
 </body>
