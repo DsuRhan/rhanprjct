@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Project Collection</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="Image/Derp-face.png" type="image/png">
+    <!-- note for myself:"copy this at every page" -->
+    <style>
+        h1 {
+            color: rgb(5, 117, 117);
+            border: 4px solid rgb(5, 117, 117);
+            padding: 10px;
+            width: fit-content;
+            border-radius: 5px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            border-inline: none;
+        }
+
+        h2,
+        h3 {
+            color: rgb(5, 117, 117);
+        }
+
+        .animation-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        #scaleanimid,
+        #skewanimid,
+        #rotateanimid {
+            font-size: 24px;
+            margin-bottom: 10px;
+            padding: 50px;
+            background-color: #f30c0c;
+            color: white;
+            border-radius: 10px;
+            border: 1px solid #000;
+        }
+
+        .scaleanim,
+        .skewanim,
+        .rotateanim {
+            padding: 20px;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes skew {
+            from {
+                transform: skew(0deg, 0deg);
+            }
+
+            to {
+                transform: skew(20deg, 20deg);
+            }
+        }
+
+        @keyframes scale {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.5);
+            }
+        }
+    </style>
+    <script>
+        /* document.addEventListener("DOMContentLoaded", function () {
+             const scaleButton = document.querySelector(".scaleanim");
+             const skewButton = document.querySelector(".skewanim");
+             const rotateButton = document.querySelector(".rotateanim");
+ 
+             scaleButton.addEventListener("click", function () {
+                 const animDiv = document.getElementById("scaleanim");
+                 animDiv.style.animation = "scale 2s forwards";
+             });
+ 
+             skewButton.addEventListener("click", function () {
+                 const animDiv = document.getElementById("skewanim");
+                 animDiv.style.animation = "skew 2s forwards";
+             });
+ 
+             rotateButton.addEventListener("click", function () {
+                 const animDiv = document.getElementById("rotateanim");
+                 animDiv.style.animation = "rotate 2s forwards";
+             });
+         });*/
+        // This code does not replay the animation on click
+        document.addEventListener("DOMContentLoaded", function () {
+            function replayAnimation(animDiv, animationName) {
+                animDiv.style.animation = "none";
+                void animDiv.offsetWidth; // Force reflow
+                animDiv.style.animation = animationName + " 2s forwards";
+            }
+
+            document.querySelectorAll(".scaleanim").forEach(function (btn) {
+                btn.addEventListener("click", function () {
+                    const animDiv = document.getElementById("scaleanimid");
+                    replayAnimation(animDiv, "scale");
+                });
+            });
+
+            document.querySelectorAll(".skewanim").forEach(function (btn) {
+                btn.addEventListener("click", function () {
+                    const animDiv = document.getElementById("skewanimid");
+                    replayAnimation(animDiv, "skew");
+                });
+            });
+
+            document.querySelectorAll(".rotateanim").forEach(function (btn) {
+                btn.addEventListener("click", function () {
+                    const animDiv = document.getElementById("rotateanimid");
+                    replayAnimation(animDiv, "rotate");
+                });
+            });
+        });
+        // This code replays the animation on click
+    </script>
+
+</head>
+
+<body>
+    <h1>Animation test</h1>
+    <h2>Click the button to see the animation</h2>
+    <div class=animation-container>
+        <div id="scaleanimid">Scale</div><button class="scaleanim">Play</button>
+        <br>
+        <div id="skewanimid">Skew</div><button class="skewanim">Play</button>
+        <br>
+        <div id="rotateanimid">Rotate</div><button class="rotateanim">Play</button>
+    </div>
+    <h3>no minigames here btw, just a small test</h3>
+    <div class="pagination" id="pagination"></div>
+    <script src="allpage.js"></script>
+</body>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="Image/Derp-face.png" type="image/png">
+<!-- note for myself:"copy this at every page" -->
+
+<head>
+    <style>
+        h1 {
+            color: rgb(5, 117, 117);
+            border: 4px solid rgb(5, 117, 117);
+            padding: 10px;
+            width: fit-content;
+            border-radius: 5px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            border-inline: none;
+        }
+
+        p {
+            text-align: center;
+            color: rgb(5, 117, 117);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        h2 {
+            color: rgb(5, 117, 117);
+        }
+
+        h3 {
+            color: rgb(5, 117, 117);
+        }
+
+        .box1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 0px;
+        }
+
+        .img-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 10px;
+            width:
+                300px;
+        }
+
+        .img-caption,
+        .img-caption2,
+        .img-caption3,
+        .img-caption4 {
+            margin-top: 4px;
+            color: rgb(5, 117, 117);
+            text-align: center;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        .box1 {
+            display: flex;
+            flex-wrap: wrap;
+            /* Allow items to wrap to the next line */
+            justify-content: center;
+            /* Center items horizontally */
+            align-items: flex-start;
+            /* Align items to the top */
+            gap: 20px;
+            /* Add space between items */
+        }
+
+        .img1,
+        .img2,
+        .img3,
+        .img4 {
+            position: relative;
+            width: 300px;
+            /* Responsive: smaller width for small screens */
+            height: 300px;
+            overflow: hidden;
+        }
+
+        /* Responsive: stack images vertically on small screens */
+        @media (max-width: 1000px) {
+            .box1 {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .img1 img,
+        .img2 img,
+        .img3 img,
+        .img4 img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: auto;
+            display: block;
+            padding: 0px;
+            /* Remove padding for better alignment */
+            margin: 0px;
+        }
+
+        .img1 .img-bottom,
+        .img2 .img-bottom2,
+        .img3 .img-bottom3,
+        .img4 .img-bottom4 {
+            z-index: 1;
+        }
+
+        .img1 .img-top,
+        .img2 .img-top2,
+        .img3 .img-top3,
+        .img4 .img-top4 {
+            z-index: 2;
+            /* Start fully visible */
+            clip-path: inset(0 0 0 0);
+            transition: clip-path 0.5s cubic-bezier(0.77, 0, 0.18, 1);
+        }
+
+        .img1:hover .img-top {
+            /* Disappear from top to bottom */
+            clip-path: inset(100% 0 0 0);
+        }
+
+        .img2:hover .img-top2 {
+            /* Disappear from right to left */
+            clip-path: inset(0 100% 0 0);
+        }
+
+        .img3:hover .img-top3 {
+            /* Disappear from left to right */
+            clip-path: inset(0 0 0 100%);
+        }
+
+        .img4:hover .img-top4 {
+            /* Disappear from bottom to top */
+            clip-path: inset(0 0 100% 0);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Random test</h1>
+    <h2>In this page im gonna test random css and js code ive found on sosial media</h2>
+    <!--Developer note: This is a test page for random code snippets-->
+    <h3>Enjoy</h3>
+    <div class="box1">
+        <div class="img-container">
+            <p class="img-caption">Test</p>
+            <div class="img1">
+                <img src="Image/Anby1.png" alt="Anby1" class="img-bottom">
+                <img src="Image/Anby2.png" alt="Anby2" class="img-top">
+            </div>
+
+        </div>
+        <div class="img-container">
+            <p class="img-caption2">Zakitor</p>
+            <div class="img2">
+                <img src="Image/ellen1.png" alt="Ellen1" class="img-top2">
+                <img src="Image/ellen2.png" alt="Ellen2" class="img-bottom2">
+            </div>
+
+        </div>
+        <div class="img-container">
+            <p class="img-caption3">mas pais</p>
+            <div class="img3">
+                <img src="Image/burnice1.png" alt="Burnice1" class="img-top3">
+                <img src="Image/burnice2.png" alt="Burnice2" class="img-bottom3">
+            </div>
+
+        </div>
+        <div class="img-container">
+            <p class="img-caption4">My bini 😋</p>
+            <div class="img4">
+                <img src="Image/miyabi1.png" alt="Hoshimi1" class="img-top4">
+                <img src="Image/miyabi2.png" alt="Hoshimi2" class="img-bottom4">
+            </div>
+        </div>
+    </div>
+    <div class="pagination" id="pagination">
+    </div>
+    <script src="allpage.js"></script>
+</body>
+
+</html>
